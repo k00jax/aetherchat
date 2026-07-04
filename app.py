@@ -176,7 +176,9 @@ def health():
         "site": SITE_NAME,
         "stripe": bool(stripe),
         "openrouter": bool(OPENROUTER_KEY),
-        "models": len(MODELS)
+        "models": len(MODELS),
+        "env_keys": [k for k in os.environ if any(p in k.lower() for p in ["openrouter","stripe","secret","site"])],
+        "vercel": bool(os.environ.get("VERCEL"))
     })
 
 @app.route("/")
