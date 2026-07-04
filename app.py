@@ -12,8 +12,19 @@ Quick start:
 import os, json, uuid, hashlib
 from datetime import datetime, timezone
 from pathlib import Path
-from flask import Flask, request, jsonify, render_template, session, redirect, url_for
-import requests
+
+# Defensive imports — graceful fallback if deps missing
+try:
+    from flask import Flask, request, jsonify, render_template, session, redirect, url_for
+except ImportError:
+    Flask = None
+    print("ERROR: Flask not installed. Run: pip install flask")
+
+try:
+    import requests
+except ImportError:
+    requests = None
+    print("WARNING: requests not installed.")
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", os.urandom(24).hex())
@@ -36,12 +47,15 @@ SITE_NAME = "AetherChat"
 SITE_DOMAIN = os.environ.get("SITE_DOMAIN", "http://localhost:5050")
 SITE_DESC = "Affordable AI chat. Pay only for what you use. No subscriptions."
 
-# Stripe setup (lazy init to not crash without key)
+# Stripe setup (lazy init to not crash without key or missing package)
 stripe = None
 if STRIPE_KEY:
-    import stripe as _stripe
-    _stripe.api_key = STRIPE_KEY
-    stripe = _stripe
+    try:
+        import stripe as _stripe
+        _stripe.api_key = STRIPE_KEY
+        stripe = _stripe
+    except ImportError:
+        print("WARNING: stripe package not installed. Run: pip install stripe")
 
 # ═══════════════════════════════════════════
 # MODELS & PRICING (50% markup over OpenRouter wholesale)
@@ -154,6 +168,17 @@ def add_credits(user_id, amount, source="manual"):
 # ═══════════════════════════════════════════
 # ROUTES — PUBLIC
 # ═══════════════════════════════════════════
+@app.route("/api/health")
+def health():
+    """Health check — Vercel uses this to verify deployment."""
+    return jsonify({
+        "status": "ok",
+        "site": SITE_NAME,
+        "stripe": bool(stripe),
+        "openrouter": bool(OPENROUTER_KEY),
+        "models": len(MODELS)
+    })
+
 @app.route("/")
 def landing():
     """SEO-optimized landing page for new visitors. Existing users go to chat."""
