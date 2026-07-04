@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site }} — Affordable AI Chat, Pay Per Use</title>
+    <meta name="description" content="{{ desc }}">
+    <meta property="og:title" content="{{ site }} — Pay-per-use AI Chat">
+    <meta property="og:description" content="{{ desc }}">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="{{ domain }}/">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e0e0e0; line-height: 1.6; }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 40px; background: #111118; border-bottom: 1px solid #1a1a2e; }
+        nav .logo { font-size: 20px; font-weight: 700; background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        nav a { color: #a0a0b0; text-decoration: none; margin-left: 24px; font-size: 14px; }
+        nav a:hover { color: #e0e0e0; }
+        nav .cta { background: linear-gradient(135deg, #6366f1, #a855f7); padding: 8px 20px; border-radius: 6px; color: white !important; }
+
+        .hero { text-align: center; padding: 80px 20px 60px; max-width: 700px; margin: 0 auto; }
+        .hero h1 { font-size: 42px; font-weight: 800; line-height: 1.2; margin-bottom: 16px; }
+        .hero h1 span { background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 18px; color: #888; margin-bottom: 32px; }
+        .hero .btn { display: inline-block; background: linear-gradient(135deg, #6366f1, #a855f7); color: white; padding: 14px 36px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; }
+        .hero .sub { color: #666; font-size: 13px; margin-top: 12px; }
+
+        .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto 60px; padding: 0 20px; }
+        .feature { background: #111118; border: 1px solid #1a1a2e; border-radius: 12px; padding: 24px; text-align: center; }
+        .feature .icon { font-size: 32px; margin-bottom: 12px; }
+        .feature h3 { font-size: 16px; margin-bottom: 8px; }
+        .feature p { font-size: 13px; color: #888; }
+
+        .models { max-width: 900px; margin: 0 auto 60px; padding: 0 20px; }
+        .models h2 { text-align: center; font-size: 28px; margin-bottom: 30px; }
+        .model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+        .model-card { background: #111118; border: 1px solid #1a1a2e; border-radius: 10px; padding: 20px; }
+        .model-card .name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+        .model-card .desc { font-size: 12px; color: #888; margin-bottom: 10px; }
+        .model-card .price { color: #a855f7; font-size: 14px; font-weight: 600; }
+
+        .pricing { max-width: 800px; margin: 0 auto 60px; padding: 0 20px; text-align: center; }
+        .pricing h2 { font-size: 28px; margin-bottom: 30px; }
+        .pack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .pack { background: #111118; border: 1px solid #1a1a2e; border-radius: 12px; padding: 24px; cursor: pointer; transition: border-color 0.2s; }
+        .pack:hover { border-color: #6366f1; }
+        .pack .amount { font-size: 32px; font-weight: 800; color: #a855f7; }
+        .pack .label { font-size: 14px; color: #888; margin: 8px 0; }
+        .pack .savings { font-size: 12px; color: #33ff33; }
+
+        .faq { max-width: 700px; margin: 0 auto 80px; padding: 0 20px; }
+        .faq h2 { text-align: center; font-size: 28px; margin-bottom: 30px; }
+        .faq-item { background: #111118; border: 1px solid #1a1a2e; border-radius: 8px; padding: 16px 20px; margin-bottom: 10px; }
+        .faq-item h4 { font-size: 14px; margin-bottom: 6px; }
+        .faq-item p { font-size: 13px; color: #888; }
+
+        footer { text-align: center; padding: 40px; color: #444; font-size: 12px; border-top: 1px solid #1a1a2e; }
+
+        @media (max-width: 700px) {
+            .features, .pack-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">✦ {{ site }}</div>
+        <div>
+            <a href="#features">Features</a>
+            <a href="#models">Models</a>
+            <a href="#pricing">Pricing</a>
+            <a href="/chat" class="cta">Try Free →</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>AI Chat That <span>Doesn't Break the Bank</span></h1>
+        <p>Access Claude, Gemini, Qwen, and more. Pay only for what you use — no subscriptions, no minimums. <strong>$1 free credit</strong> to start.</p>
+        <a href="/chat" class="btn">Start Chatting Free →</a>
+        <div class="sub">No credit card required. $1 free credit included.</div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="feature">
+            <div class="icon">💎</div>
+            <h3>Pay Per Use</h3>
+            <p>Only pay for the tokens you actually use. No monthly subscriptions.</p>
+        </div>
+        <div class="feature">
+            <div class="icon">🧠</div>
+            <h3>Multiple Models</h3>
+            <p>Choose the right AI for each task — from budget to best-in-class.</p>
+        </div>
+        <div class="feature">
+            <div class="icon">🔒</div>
+            <h3>No API Key Needed</h3>
+            <p>Just chat. We handle all the API complexity behind the scenes.</p>
+        </div>
+    </section>
+
+    <section class="models" id="models">
+        <h2>Available Models</h2>
+        <div class="model-grid">
+            {% for key, m in models.items() %}
+            <div class="model-card">
+                <div class="name">{{ m.name }}</div>
+                <div class="desc">{{ m.description }}</div>
+                <div class="price">${{ "%.2f"|format(m.price_per_m_in) }}/M tokens input</div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <h2>Simple, Transparent Pricing</h2>
+        <div class="pack-grid">
+            {% for key, p in packs.items() %}
+            <div class="pack" onclick="window.location='/chat'">
+                <div class="amount">${{ "%.0f"|format(p.price) }}</div>
+                <div class="label">${{ "%.0f"|format(p.credits) }} in credits</div>
+                {% if p.credits > p.price %}
+                <div class="savings">Save {{ "%.0f"|format((1 - p.price/p.credits) * 100) }}%</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="faq">
+        <h2>FAQ</h2>
+        <div class="faq-item"><h4>How does pricing work?</h4><p>You buy credits in packs. Each message costs based on the model and token count. No subscriptions — credits never expire.</p></div>
+        <div class="faq-item"><h4>Which model should I use?</h4><p>Claude Sonnet for complex reasoning, Qwen Max for best value, Gemini Flash for speed, GLM for budget.</p></div>
+        <div class="faq-item"><h4>Is my data private?</h4><p>Messages are sent to OpenRouter for processing. We don't store chat history on our servers.</p></div>
+    </section>
+
+    <footer>
+        © 2026 {{ site }} — Pay-per-use AI chat. Built by Studio Prod.
+    </footer>
+</body>
+</html>
