@@ -1,0 +1,17 @@
+{
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    { "src": "/stripe/webhook", "dest": "/api/index.py" },
+    { "src": "/api/(.*)", "dest": "/api/index.py" },
+    { "src": "/admin", "dest": "/api/index.py" },
+    { "src": "/sitemap.xml", "dest": "/api/index.py" },
+    { "src": "/robots.txt", "dest": "/api/index.py" },
+    { "src": "/(.*\\.(html|css|js|png|jpg|svg|ico))", "dest": "/$1" },
+    { "src": "/(.*)", "dest": "/api/index.py" }
+  ]
+}

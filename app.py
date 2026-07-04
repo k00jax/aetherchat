@@ -17,7 +17,12 @@ import requests
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", os.urandom(24).hex())
-DATA_DIR = Path(__file__).parent / "data"
+
+# Use /tmp on Vercel (only writable dir), local data dir otherwise
+if os.environ.get("VERCEL"):
+    DATA_DIR = Path("/tmp/aetherchat_data")
+else:
+    DATA_DIR = Path(__file__).parent / "data"
 DATA_DIR.mkdir(exist_ok=True)
 
 # ═══════════════════════════════════════════
